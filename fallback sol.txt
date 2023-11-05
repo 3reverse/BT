@@ -1,0 +1,37 @@
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+// Creating a contract
+contract FallbackExample {
+    // Declaring the state variable
+    uint256 public x;
+
+    // Creating a constructor
+    constructor() {
+        // Set x to default
+        // value of 10
+        x = 10;
+    }
+
+    // Creating a function
+    function setX(uint256 _x) public {
+        // Set x to the
+        // value sent
+        x = _x;
+    }
+
+    // This fallback function
+    // will keep all the Ether
+    receive() external payable {
+        // Do something with the received Ether if needed
+    }
+}
+
+// Creating the sender contract
+contract Sender {
+    function transfer(address payable _receiver) public payable {
+        // Transfers 100 Eth to the specified contract address
+        _receiver.transfer(msg.value);
+    }
+}
